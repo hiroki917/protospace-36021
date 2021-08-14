@@ -4,10 +4,10 @@
       <p class="prototype__hedding">
         <%= @prototype.title%>
       </p>
-      <%= link_to @prototype.user,user_path(current_user.id), class: :prototype__user %>
+      <%= link_to @prototype.user.name,user_path(@prototype.user.id), class: :prototype__user %>
+      <% if user_signed_in? && current_user.id == @prototype.user_id %>
       <%# (誰の詳細ページ.id) %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
-      <% if user_signed_in? && current_user.id == @prototype.user_id %>
         <div class="prototype__manage">
           <%= link_to "編集する", edit_prototype_path(@prototype.id), class: :prototype__btn %>
           <%= link_to "削除する", prototype_path(@prototype.id), class: :prototype__btn, method: :delete%>
@@ -49,7 +49,7 @@
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
           <% @comments.each do |comment| %>
             <li class="comments_list">
-              <%= @comment.text%>
+              <%= comment.text%>
               <%= link_to comment.user.name, root_path, class: :comment_user %>
             </li>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>

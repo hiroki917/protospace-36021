@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_tweet, only: [:update,:edit, :show]
+  before_action :set_tweet, only: [:update,:edit,:show]
   before_action :authenticate_user!, only: [:new,:edit,:destroy, :update]
   before_action :move_to_index, only: [:edit, :update]
  
